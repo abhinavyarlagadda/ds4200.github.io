@@ -1,113 +1,71 @@
-/* GENERAL PAGE STYLING */
 body {
   font-family: Arial, sans-serif;
-  line-height: 1.6;
   margin: 0;
   padding: 0;
-  background: #f8f9fb;
+  background-color: #ffffff;
   color: #222;
+  line-height: 1.5;
 }
 
-/* HEADER */
 header {
-  background: #1f3c88;
-  color: white;
-  padding: 30px 20px;
+  background-color: #dbe7f5;
   text-align: center;
+  padding: 25px 15px;
 }
 
-/* NAV BAR */
+header h1 {
+  margin-bottom: 5px;
+}
+
 nav {
-  background: #e9edf5;
-  padding: 12px;
+  background-color: #f2f2f2;
   text-align: center;
-  position: sticky;
-  top: 0;
+  padding: 10px;
 }
 
 nav a {
-  margin: 0 12px;
+  color: #333;
   text-decoration: none;
-  color: #1f3c88;
-  font-weight: bold;
+  margin: 0 10px;
 }
 
 nav a:hover {
   text-decoration: underline;
 }
 
-/* MAIN CONTENT */
 main {
-  max-width: 1100px;
-  margin: 30px auto;
-  padding: 0 20px 40px;
+  width: 80%;
+  margin: 20px auto;
 }
 
-/* SECTION CARDS */
 section {
-  background: white;
   margin-bottom: 30px;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-/* HEADINGS */
-h1, h2, h3 {
-  margin-top: 0;
+h2 {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
 }
 
-/* VISUALIZATION BOX */
-.viz-box {
-  border: 2px dashed #bbb;
-  padding: 20px;
-  margin: 20px 0;
-  border-radius: 10px;
-  background: #fafafa;
-  text-align: center;
-}
-
-/* TAKEAWAY BOX */
 .takeaway {
-  background: #f3f7ff;
-  border-left: 5px solid #1f3c88;
-  padding: 15px;
-  margin-top: 15px;
-  border-radius: 6px;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-left: 3px solid #888;
 }
 
-/* LISTS */
-ul {
-  padding-left: 20px;
-}
-
-/* REFERENCES */
 .reference-list a {
-  color: #0b63ce;
-  text-decoration: none;
+  color: #1a5fb4;
 }
 
-.reference-list a:hover {
-  text-decoration: underline;
-}
-
-/* SMALL TEXT */
 .small-note {
-  font-size: 0.95rem;
-  color: #555;
+  font-size: 14px;
+  color: #666;
 }
 
-/* FOOTER */
 footer {
   text-align: center;
-  padding: 20px;
-  background: #1f3c88;
-  color: white;
+  padding: 15px;
+  background-color: #f2f2f2;
   margin-top: 30px;
-}
-
-/* OPTIONAL: HOVER EFFECTS FOR VISUALS */
-.viz-box:hover {
-  background: #f0f4ff;
-  transition: 0.3s;
 }

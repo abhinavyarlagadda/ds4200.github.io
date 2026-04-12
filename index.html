@@ -121,12 +121,32 @@ Depending on the scope of the finalized project, this database can later be used
     update the data on the public databases.  Additionally, this visualization may take some time to load, given
     the size of the dataset.
 </p>
-<iframe 
-  src="interactive_param_view.html" 
-  width="100%" 
-  height="600" 
-  frameborder="0">
-</iframe>
+<div class="tabs">
+  <button onclick="show('co')" class="active">Carbon Monoxide</button>
+  <button onclick="show('no2')">Nitrogen Dioxide</button>
+  <button onclick="show('o3')">Ozone</button>
+  <button onclick="show('so2')">Sulfur Dioxide</button>
+</div>
+
+<div id="co" class="pane">
+  <iframe src="viz/Carbon monoxide.html" loading="lazy" width="100%" height="600px"></iframe>
+</div>
+<div id="no2" class="pane" hidden>
+  <iframe src="viz/Nitrogen Dioxide (NO2).html" loading="lazy" width="100%" height="600px"></iframe>
+</div>
+<div id="o3" class="pane" hidden>
+  <iframe src="viz/Ozone.html" loading="lazy" width="100%" height="600px"></iframe>
+</div>
+<div id="so2" class="pane" hidden>
+  <iframe src="viz/Sulfur Dioxide.html" loading="lazy" width="100%" height="600px"></iframe>
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.pane').forEach(p => p.hidden = true);
+  document.getElementById(id).hidden = false;
+}
+</script>
 
 <div class="takeaway">
   <strong>Takeaway:</strong> Using this visualization, users can more easily observe significant changes across time, and can

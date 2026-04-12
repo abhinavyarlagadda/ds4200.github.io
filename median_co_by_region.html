@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@6.1.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300, "stroke": null}, "axis": {"grid": true, "gridColor": "#eeeeee"}}, "layer": [{"mark": {"type": "bar", "cornerRadiusEnd": 4}, "encoding": {"color": {"field": "Median CO (ppm)", "legend": null, "scale": {"scheme": "orangered"}, "type": "quantitative"}, "tooltip": [{"field": "Region", "title": "Region", "type": "nominal"}, {"field": "Median CO (ppm)", "format": ".4f", "title": "Median CO (ppm)", "type": "quantitative"}], "x": {"field": "Median CO (ppm)", "scale": {"zero": true}, "title": "Median CO Concentration (ppm)", "type": "quantitative"}, "y": {"axis": {"labelFontSize": 12}, "field": "Region", "sort": ["Southeast", "South Central", "California", "Midwest", "Mid-Atlantic", "Northeast", "Territories", "Mountain West", "Pacific Northwest", "Alaska / Hawaii"], "title": null, "type": "nominal"}}}, {"mark": {"type": "text", "align": "left", "color": "#444", "dx": 4, "fontSize": 11}, "encoding": {"color": {"field": "Median CO (ppm)", "legend": null, "scale": {"scheme": "orangered"}, "type": "quantitative"}, "text": {"field": "Median CO (ppm)", "format": ".3f", "type": "quantitative"}, "tooltip": [{"field": "Region", "title": "Region", "type": "nominal"}, {"field": "Median CO (ppm)", "format": ".4f", "title": "Median CO (ppm)", "type": "quantitative"}], "x": {"field": "Median CO (ppm)", "scale": {"zero": true}, "title": "Median CO Concentration (ppm)", "type": "quantitative"}, "y": {"axis": {"labelFontSize": 12}, "field": "Region", "sort": ["Southeast", "South Central", "California", "Midwest", "Mid-Atlantic", "Northeast", "Territories", "Mountain West", "Pacific Northwest", "Alaska / Hawaii"], "title": null, "type": "nominal"}}}], "data": {"name": "data-e74edae5b603c8b485485d5bcbf193b2"}, "height": 360, "title": {"text": "Median Daily CO Concentration by U.S. Region (2025)", "anchor": "start", "fontSize": 16, "subtitleFontSize": 12}, "width": 600, "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-e74edae5b603c8b485485d5bcbf193b2": [{"Region": "Southeast", "Median CO (ppm)": 0.254167}, {"Region": "South Central", "Median CO (ppm)": 0.2452935}, {"Region": "California", "Median CO (ppm)": 0.225}, {"Region": "Midwest", "Median CO (ppm)": 0.222136}, {"Region": "Mid-Atlantic", "Median CO (ppm)": 0.2}, {"Region": "Northeast", "Median CO (ppm)": 0.2}, {"Region": "Territories", "Median CO (ppm)": 0.2}, {"Region": "Mountain West", "Median CO (ppm)": 0.191304}, {"Region": "Pacific Northwest", "Median CO (ppm)": 0.170417}, {"Region": "Alaska / Hawaii", "Median CO (ppm)": 0.129167}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

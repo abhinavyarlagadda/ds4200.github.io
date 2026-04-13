@@ -61,7 +61,7 @@ const height = svgHeight - margin.top - margin.bottom;
 const cityOrder = ["Boston", "New York", "Washington, DC", "Los Angeles", "Houston", "Atlanta"];
 const cities = ["Boston", "New York", "Washington", "Los Angeles", "Houston", "Atlanta"];
 
-const parseDate = d3.timeParse("%m/%d/%Y");
+const parseDate = d3.timeParse("%Y-%m-%d");
 const formatDate = d3.timeFormat("%b %d, %Y");
 
 const color = d3.scaleOrdinal()
@@ -95,7 +95,7 @@ d3.csv("co.csv").then(function(data) {
   data.forEach(function(d) {
     d.date = parseDate(d["Date Local"]);
     d.co = +d["Arithmetic Mean"];
-    d.aqi = +d["AQI"];
+    d.aqi = d["AQI"] === "" ? null : +d["AQI"];
   });
 
   const filtered = data
@@ -126,7 +126,7 @@ d3.csv("co.csv").then(function(data) {
     function(v) {
       return {
         co: d3.mean(v, d => d.co),
-        aqi: d3.mean(v, d => d.aqi)
+        aqi: d3.mean(v, d => d.aqi == null ? undefined : d.aqi)
       };
     },
     d => +d.date,
@@ -209,7 +209,7 @@ d3.csv("co.csv").then(function(data) {
           `<strong>Date:</strong> ${formatDate(d.date)}<br>
            <strong>City:</strong> ${d.City}<br>
            <strong>CO (ppm):</strong> ${d.co.toFixed(3)}<br>
-           <strong>Avg AQI:</strong> ${d.aqi.toFixed(1)}`
+           <strong>Avg AQI:</strong> ${d.aqi == null || isNaN(d.aqi) ? "N/A" : d.aqi.toFixed(1)}`
         );
     })
     .on("mousemove", function(event) {

@@ -78,7 +78,7 @@
 
     const tooltip = d3.select("#tooltip");
 
-    d3.csv("all_parameters_daily 2.csv").then(function(data) {
+    d3.csv("no2.csv").then(function(data) {
       
       data.forEach(d => {
         d.Latitude = +d.Latitude;

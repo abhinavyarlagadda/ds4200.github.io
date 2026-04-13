@@ -2,187 +2,246 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Latitude vs AQI Scatter Plot</title>
+  <title>Daily CO Concentration Over Time by City (2025)</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: #f8f8f8;
+      margin: 30px;
     }
 
     h2 {
-      text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 4px;
     }
 
     p {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 20px auto;
-      line-height: 1.5;
-    }
-
-    svg {
-      display: block;
-      margin: auto;
-      background: white;
-      border: 1px solid #ddd;
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #555;
     }
 
     .tooltip {
       position: absolute;
       background: white;
       border: 1px solid #ccc;
-      padding: 8px;
-      font-size: 12px;
-      border-radius: 4px;
+      padding: 8px 10px;
+      border-radius: 5px;
       pointer-events: none;
+      font-size: 12px;
       opacity: 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
 
     .axis-label {
-      font-size: 14px;
-      font-weight: bold;
+      font-size: 13px;
+      font-weight: 500;
     }
 
     .legend text {
       font-size: 12px;
+      alignment-baseline: middle;
     }
   </style>
 </head>
 <body>
 
-  <h2>Latitude vs AQI</h2>
-  <p>
-    This scatter plot shows the relationship between latitude and AQI across monitoring sites.
-    Each point represents one observation, and color indicates pollutant type.
-  </p>
+<h2>Daily CO Concentration Over Time by City (2025)</h2>
+<p>Daily average CO across monitors in six major U.S. cities</p>
 
-  <div id="chart"></div>
-  <div class="tooltip" id="tooltip"></div>
+<div id="chart"></div>
+<div class="tooltip" id="tooltip"></div>
 
-  <script>
-    const margin = { top: 40, right: 180, bottom: 60, left: 70 };
-    const width = 1000 - margin.left - margin.right;
-    const height = 550 - margin.top - margin.bottom;
+<script>
+const margin = { top: 30, right: 170, bottom: 60, left: 80 };
+const svgWidth = 900;
+const svgHeight = 420;
+const width = svgWidth - margin.left - margin.right;
+const height = svgHeight - margin.top - margin.bottom;
 
-    const svg = d3.select("#chart")
-      .append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
+const cityOrder = ["Boston", "New York", "Washington, DC", "Los Angeles", "Houston", "Atlanta"];
+const cities = ["Boston", "New York", "Washington", "Los Angeles", "Houston", "Atlanta"];
 
-    const tooltip = d3.select("#tooltip");
+const parseDate = d3.timeParse("%m/%d/%Y");
+const formatDate = d3.timeFormat("%b %d, %Y");
 
-    d3.csv("no2.csv").then(function(data) {
-      
-      data.forEach(d => {
-        d.Latitude = +d.Latitude;
-        d.AQI = +d.AQI;
-      });
+const color = d3.scaleOrdinal()
+  .domain(cityOrder)
+  .range(d3.schemeCategory10);
 
-      data = data.filter(d =>
-        !isNaN(d.Latitude) &&
-        !isNaN(d.AQI) &&
-        d["Parameter Name"] &&
+function labelCity(name) {
+  if (!name) return null;
+  name = String(name);
+
+  if (name.includes("Boston")) return "Boston";
+  if (name.includes("New York")) return "New York";
+  if (name.includes("Washington")) return "Washington, DC";
+  if (name.includes("Los Angeles")) return "Los Angeles";
+  if (name.includes("Houston")) return "Houston";
+  if (name.includes("Atlanta")) return "Atlanta";
+  return null;
+}
+
+const svg = d3.select("#chart")
+  .append("svg")
+  .attr("width", svgWidth)
+  .attr("height", svgHeight);
+
+const chart = svg.append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
+
+const tooltip = d3.select("#tooltip");
+
+d3.csv("co.csv").then(function(data) {
+  data.forEach(function(d) {
+    d.date = parseDate(d["Date Local"]);
+    d.co = +d["Arithmetic Mean"];
+    d.aqi = +d["AQI"];
+  });
+
+  const filtered = data
+    .filter(function(d) {
+      return (
         d["City Name"] &&
-        d["State Name"]
+        cities.some(function(city) {
+          return d["City Name"].toLowerCase().includes(city.toLowerCase());
+        }) &&
+        d.date &&
+        !isNaN(d.co)
       );
-
-      const pollutants = [...new Set(data.map(d => d["Parameter Name"]))];
-
-      const color = d3.scaleOrdinal()
-        .domain(pollutants)
-        .range(d3.schemeTableau10.concat(d3.schemeSet3));
-
-      const x = d3.scaleLinear()
-        .domain(d3.extent(data, d => d.Latitude))
-        .nice()
-        .range([0, width]);
-
-      const y = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.AQI)])
-        .nice()
-        .range([height, 0]);
-
-      svg.append("g")
-        .attr("transform", `translate(0,${height})`)
-        .call(d3.axisBottom(x));
-
-      svg.append("g")
-        .call(d3.axisLeft(y));
-
-      svg.append("text")
-        .attr("class", "axis-label")
-        .attr("x", width / 2)
-        .attr("y", height + 45)
-        .attr("text-anchor", "middle")
-        .text("Latitude");
-
-      svg.append("text")
-        .attr("class", "axis-label")
-        .attr("transform", "rotate(-90)")
-        .attr("x", -height / 2)
-        .attr("y", -45)
-        .attr("text-anchor", "middle")
-        .text("AQI");
-
-      svg.selectAll("circle")
-        .data(data)
-        .enter()
-        .append("circle")
-        .attr("cx", d => x(d.Latitude))
-        .attr("cy", d => y(d.AQI))
-        .attr("r", 4)
-        .attr("fill", d => color(d["Parameter Name"]))
-        .attr("opacity", 0.6)
-        .on("mouseover", function(event, d) {
-          tooltip
-            .style("opacity", 1)
-            .html(`
-              <strong>Pollutant:</strong> ${d["Parameter Name"]}<br>
-              <strong>City:</strong> ${d["City Name"]}<br>
-              <strong>State:</strong> ${d["State Name"]}<br>
-              <strong>Latitude:</strong> ${d.Latitude}<br>
-              <strong>AQI:</strong> ${d.AQI}<br>
-              <strong>Date:</strong> ${d["Date Local"]}
-            `);
-        })
-        .on("mousemove", function(event) {
-          tooltip
-            .style("left", (event.pageX + 12) + "px")
-            .style("top", (event.pageY - 28) + "px");
-        })
-        .on("mouseout", function() {
-          tooltip.style("opacity", 0);
-        });
-
-      const legend = svg.append("g")
-        .attr("class", "legend")
-        .attr("transform", `translate(${width + 20}, 0)`);
-
-      pollutants.forEach((p, i) => {
-        const row = legend.append("g")
-          .attr("transform", `translate(0, ${i * 20})`);
-
-        row.append("rect")
-          .attr("width", 12)
-          .attr("height", 12)
-          .attr("fill", color(p));
-
-        row.append("text")
-          .attr("x", 18)
-          .attr("y", 10)
-          .text(p);
-      });
-
-    }).catch(function(error) {
-      console.error("Error loading the CSV file:", error);
+    })
+    .map(function(d) {
+      return {
+        date: d.date,
+        City: labelCity(d["City Name"]),
+        co: d.co,
+        aqi: d.aqi
+      };
+    })
+    .filter(function(d) {
+      return d.City !== null;
     });
-  </script>
+
+  const grouped = d3.rollups(
+    filtered,
+    function(v) {
+      return {
+        co: d3.mean(v, d => d.co),
+        aqi: d3.mean(v, d => d.aqi)
+      };
+    },
+    d => +d.date,
+    d => d.City
+  );
+
+  const finalData = [];
+  grouped.forEach(function(dateGroup) {
+    const dateVal = dateGroup[0];
+    const cityGroups = dateGroup[1];
+
+    cityGroups.forEach(function(cityGroup) {
+      const city = cityGroup[0];
+      const vals = cityGroup[1];
+
+      finalData.push({
+        date: new Date(+dateVal),
+        City: city,
+        co: vals.co,
+        aqi: vals.aqi
+      });
+    });
+  });
+
+  finalData.sort(function(a, b) {
+    return d3.ascending(a.date, b.date);
+  });
+
+  const x = d3.scaleTime()
+    .domain(d3.extent(finalData, d => d.date))
+    .range([0, width]);
+
+  const y = d3.scaleLinear()
+    .domain(d3.extent(finalData, d => d.co))
+    .nice()
+    .range([height, 0]);
+
+  const xAxis = d3.axisBottom(x)
+    .ticks(d3.timeMonth.every(1))
+    .tickFormat(d3.timeFormat("%b"));
+
+  const yAxis = d3.axisLeft(y);
+
+  chart.append("g")
+    .attr("transform", `translate(0,${height})`)
+    .call(xAxis);
+
+  chart.append("g")
+    .call(yAxis);
+
+  chart.append("text")
+    .attr("class", "axis-label")
+    .attr("x", width / 2)
+    .attr("y", height + 45)
+    .attr("text-anchor", "middle")
+    .text("Date");
+
+  chart.append("text")
+    .attr("class", "axis-label")
+    .attr("transform", "rotate(-90)")
+    .attr("x", -height / 2)
+    .attr("y", -55)
+    .attr("text-anchor", "middle")
+    .text("Daily Avg CO (ppm)");
+
+  chart.selectAll("circle.point")
+    .data(finalData)
+    .enter()
+    .append("circle")
+    .attr("class", "point")
+    .attr("cx", d => x(d.date))
+    .attr("cy", d => y(d.co))
+    .attr("r", 4.5)
+    .attr("fill", d => color(d.City))
+    .attr("opacity", 0.75)
+    .on("mouseover", function(event, d) {
+      tooltip
+        .style("opacity", 1)
+        .html(
+          `<strong>Date:</strong> ${formatDate(d.date)}<br>
+           <strong>City:</strong> ${d.City}<br>
+           <strong>CO (ppm):</strong> ${d.co.toFixed(3)}<br>
+           <strong>Avg AQI:</strong> ${d.aqi.toFixed(1)}`
+        );
+    })
+    .on("mousemove", function(event) {
+      tooltip
+        .style("left", (event.pageX + 12) + "px")
+        .style("top", (event.pageY - 28) + "px");
+    })
+    .on("mouseout", function() {
+      tooltip.style("opacity", 0);
+    });
+
+  const legend = svg.append("g")
+    .attr("class", "legend")
+    .attr("transform", `translate(${svgWidth - margin.right + 30}, ${margin.top + 10})`);
+
+  cityOrder.forEach(function(city, i) {
+    const row = legend.append("g")
+      .attr("transform", `translate(0, ${i * 24})`);
+
+    row.append("circle")
+      .attr("cx", 0)
+      .attr("cy", 0)
+      .attr("r", 5)
+      .attr("fill", color(city));
+
+    row.append("text")
+      .attr("x", 12)
+      .attr("y", 0)
+      .text(city);
+  });
+});
+</script>
+
 </body>
 </html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Latitude vs AQI Scatter Plot</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f8f8f8;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    p {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 20px auto;
+      line-height: 1.5;
+    }
+
+    svg {
+      display: block;
+      margin: auto;
+      background: white;
+      border: 1px solid #ddd;
+    }
+
+    .tooltip {
+      position: absolute;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 8px;
+      font-size: 12px;
+      border-radius: 4px;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .axis-label {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .legend text {
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Latitude vs AQI</h2>
+  <p>
+    This scatter plot shows the relationship between latitude and AQI across monitoring sites.
+    Each point represents one observation, and color indicates pollutant type.
+  </p>
+
+  <div id="chart"></div>
+  <div class="tooltip" id="tooltip"></div>
+
+  <script>
+    const margin = { top: 40, right: 180, bottom: 60, left: 70 };
+    const width = 1000 - margin.left - margin.right;
+    const height = 550 - margin.top - margin.bottom;
+
+    const svg = d3.select("#chart")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    const tooltip = d3.select("#tooltip");
+
+    d3.csv("all_parameters_daily 2.csv").then(function(data) {
+      
+      data.forEach(d => {
+        d.Latitude = +d.Latitude;
+        d.AQI = +d.AQI;
+      });
+
+      data = data.filter(d =>
+        !isNaN(d.Latitude) &&
+        !isNaN(d.AQI) &&
+        d["Parameter Name"] &&
+        d["City Name"] &&
+        d["State Name"]
+      );
+
+      const pollutants = [...new Set(data.map(d => d["Parameter Name"]))];
+
+      const color = d3.scaleOrdinal()
+        .domain(pollutants)
+        .range(d3.schemeTableau10.concat(d3.schemeSet3));
+
+      const x = d3.scaleLinear()
+        .domain(d3.extent(data, d => d.Latitude))
+        .nice()
+        .range([0, width]);
+
+      const y = d3.scaleLinear()
+        .domain([0, d3.max(data, d => d.AQI)])
+        .nice()
+        .range([height, 0]);
+
+      svg.append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(d3.axisBottom(x));
+
+      svg.append("g")
+        .call(d3.axisLeft(y));
+
+      svg.append("text")
+        .attr("class", "axis-label")
+        .attr("x", width / 2)
+        .attr("y", height + 45)
+        .attr("text-anchor", "middle")
+        .text("Latitude");
+
+      svg.append("text")
+        .attr("class", "axis-label")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -height / 2)
+        .attr("y", -45)
+        .attr("text-anchor", "middle")
+        .text("AQI");
+
+      svg.selectAll("circle")
+        .data(data)
+        .enter()
+        .append("circle")
+        .attr("cx", d => x(d.Latitude))
+        .attr("cy", d => y(d.AQI))
+        .attr("r", 4)
+        .attr("fill", d => color(d["Parameter Name"]))
+        .attr("opacity", 0.6)
+        .on("mouseover", function(event, d) {
+          tooltip
+            .style("opacity", 1)
+            .html(`
+              <strong>Pollutant:</strong> ${d["Parameter Name"]}<br>
+              <strong>City:</strong> ${d["City Name"]}<br>
+              <strong>State:</strong> ${d["State Name"]}<br>
+              <strong>Latitude:</strong> ${d.Latitude}<br>
+              <strong>AQI:</strong> ${d.AQI}<br>
+              <strong>Date:</strong> ${d["Date Local"]}
+            `);
+        })
+        .on("mousemove", function(event) {
+          tooltip
+            .style("left", (event.pageX + 12) + "px")
+            .style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", function() {
+          tooltip.style("opacity", 0);
+        });
+
+      const legend = svg.append("g")
+        .attr("class", "legend")
+        .attr("transform", `translate(${width + 20}, 0)`);
+
+      pollutants.forEach((p, i) => {
+        const row = legend.append("g")
+          .attr("transform", `translate(0, ${i * 20})`);
+
+        row.append("rect")
+          .attr("width", 12)
+          .attr("height", 12)
+          .attr("fill", color(p));
+
+        row.append("text")
+          .attr("x", 18)
+          .attr("y", 10)
+          .text(p);
+      });
+
+    }).catch(function(error) {
+      console.error("Error loading the CSV file:", error);
+    });
+  </script>
+</body>
+</html>

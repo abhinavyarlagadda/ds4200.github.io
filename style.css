@@ -1,65 +1,45 @@
-/* GENERAL PAGE STYLING */
 body {
   font-family: Arial, sans-serif;
-  line-height: 1.5;
   margin: 0;
   padding: 0;
   background-color: #ffffff;
   color: #222;
+  line-height: 1.5;
 }
 
-/* HEADER */
 header {
   background-color: #dbe7f5;
-  color: #1f3c88;
-  padding: 25px 15px;
   text-align: center;
+  padding: 25px 15px;
 }
 
 header h1 {
   margin-bottom: 5px;
 }
 
-/* NAV BAR */
 nav {
   background-color: #f2f2f2;
-  padding: 10px;
   text-align: center;
-  position: sticky;
-  top: 0;
+  padding: 10px;
 }
 
 nav a {
-  margin: 0 10px;
-  color: #1f3c88;
+  color: #333;
   text-decoration: none;
-  font-weight: bold;
+  margin: 0 10px;
 }
 
 nav a:hover {
   text-decoration: underline;
 }
 
-/* MAIN CONTENT */
 main {
   width: 80%;
-  max-width: 1100px;
   margin: 20px auto;
-  padding-bottom: 40px;
 }
 
-/* SECTION CARDS */
 section {
-  background: white;
   margin-bottom: 30px;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-/* HEADINGS */
-h1, h2, h3 {
-  margin-top: 0;
 }
 
 h2 {
@@ -67,61 +47,25 @@ h2 {
   padding-bottom: 5px;
 }
 
-/* VISUALIZATION BOX */
-.viz-box {
-  border: 2px dashed #bbb;
-  padding: 20px;
-  margin: 20px 0;
-  border-radius: 10px;
-  background: #fafafa;
-  text-align: center;
-}
-
-/* TAKEAWAY BOX */
 .takeaway {
-  background: #f3f7ff;
-  border-left: 5px solid #1f3c88;
-  padding: 15px;
-  margin-top: 15px;
-  border-radius: 6px;
-}
-
-/* LISTS */
-ul {
-  padding-left: 20px;
   margin-top: 10px;
   padding: 10px;
   background-color: #f4f4f4;
   border-left: 3px solid #888;
 }
 
-/* REFERENCES */
 .reference-list a {
-  color: #0b63ce;
-  text-decoration: none;
-}
-
-.reference-list a:hover {
-  text-decoration: underline;
   color: #1a5fb4;
 }
 
-/* SMALL TEXT */
 .small-note {
   font-size: 14px;
   color: #666;
 }
 
-/* FOOTER */
 footer {
   text-align: center;
   padding: 15px;
   background-color: #f2f2f2;
   margin-top: 30px;
-}
-
-/* OPTIONAL: HOVER EFFECTS */
-.viz-box:hover {
-  background: #f0f4ff;
-  transition: 0.3s;
 }

@@ -1,81 +1,32 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #f5f7fb;
-  color: #222;
+section {
+  margin-bottom: 50px;
 }
 
-header {
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: white;
-  padding: 30px;
-  text-align: center;
+h2 {
+  margin-bottom: 15px;
+  font-size: 26px;
+  color: #1e3c72;
 }
 
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  background: white;
-  padding: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+.viz {
+  margin-bottom: 50px;
 }
 
-nav a {
-  text-decoration: none;
-  color: #2a5298;
-  font-weight: 600;
-}
-
-main {
-  max-width: 1100px;
-  margin: auto;
-  padding: 20px;
-}
-
-.card {
-  background: white;
-  padding: 20px;
-  margin-bottom: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-.viz-card {
-  background: white;
-  padding: 20px;
-  margin-bottom: 30px;
-  border-radius: 12px;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
-}
-
-.viz-card iframe {
+iframe {
   width: 100%;
-  height: 550px;
-  border-radius: 8px;
-  margin-top: 15px;
+  height: 600px;
   border: none;
+  margin: 15px 0;
 }
 
 .description {
   color: #444;
+  line-height: 1.6;
 }
 
 .takeaway {
-  margin-top: 15px;
-  padding: 12px;
-  background: #eef3ff;
-  border-left: 5px solid #2a5298;
-  border-radius: 6px;
-}
-
-.reference-list li {
-  margin-bottom: 10px;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #1e3c72;
-  color: white;
+  margin-top: 10px;
+  padding-left: 12px;
+  border-left: 3px solid #2a5298;
+  color: #333;
 }

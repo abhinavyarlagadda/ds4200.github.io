@@ -165,6 +165,9 @@ frameborder="0">
 function show(id) {
   document.querySelectorAll('.pane').forEach(p => p.hidden = true);
   document.getElementById(id).hidden = false;
+
+  document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
 }
 </script>
 

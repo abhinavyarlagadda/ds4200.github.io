@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -21,6 +20,7 @@
   </nav>
 
   <main>
+    <!-- INTRODUCTION -->
     <section id="intro">
       <h2>Project Introduction</h2>
       <p>
@@ -28,6 +28,7 @@
       </p>
     </section>
 
+    <!-- DATA DESCRIPTION -->
     <section id="data">
       <h2>Data Description</h2>
       <p>
@@ -35,186 +36,182 @@
       </p>
     </section>
 
-    <section id="references">
-      <h2>References</h2>
-      <ul class="reference-list">
-        <li>
-          <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7182097/" target="_blank">
-            Manisalidis et al. (2020). Environmental and Health Impacts of Air Pollution: A Review.
-          </a>
-        </li>
-        <li>
-          <a href="https://www.sciencedirect.com/science/article/pii/S0039914023010111" target="_blank">
-            Study on Air Pollution and Environmental/Health Impacts (ScienceDirect, 2023).
-          </a>
-        </li>
-      </ul>
+<!-- REFERENCES -->
+<section id="references">
+  <h2>References</h2>
+  <ul class="reference-list">
+    <li>
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7182097/" target="_blank">
+        Manisalidis et al. (2020). Environmental and Health Impacts of Air Pollution: A Review.
+      </a>
+    </li>
+    <li>
+      <a href="https://www.sciencedirect.com/science/article/pii/S0039914023010111" target="_blank">
+        Study on Air Pollution and Environmental/Health Impacts (ScienceDirect, 2023).
+      </a>
+    </li>
+  </ul>
+</section>
+
+    <!-- VISUALIZATIONS -->
+<section id="visualizations">
+<h2>Data Visualizations</h2>
+
+<h3>Visualization 1:</h3>
+<p>
+<strong>Description:</strong> This time-series plot shows how carbon monoxide (CO) levels and AQI vary throughout the year across four major cities. 
+Each city is represented separately, allowing for comparison of pollution patterns across different locations. 
+Across all cities, CO and AQI generally move together, rising and falling at similar points in time, which suggests a strong relationship between CO levels and overall air quality. 
+Instead of following a smooth trend, both variables display frequent short-term fluctuations, with noticeable spikes appearing at different points in the year rather than being concentrated in a single season. 
+The interactive zoom feature allows users to focus on specific time periods, making it easier to examine short-term changes, compare cities more closely, and identify localized pollution events. 
+Vertical reference lines mark U.S. holidays, providing additional context for potential temporal patterns.
+</p>
+
+<iframe 
+src="boston_co_chart.html" 
+width="100%" 
+height="700" 
+frameborder="0"
+scrolling="yes">
+</iframe>
+
+<div class="takeaway">
+<strong>Takeaway:</strong> CO and AQI move closely together across cities, indicating that carbon monoxide is a key contributor to overall air quality. 
+Pollution levels fluctuate frequently, showing that air quality can change quickly rather than following a stable pattern. 
+Since spikes occur throughout the year and vary by city, air quality issues are not strictly seasonal and are influenced by local factors. 
+The ability to zoom in highlights short-term pollution events that may not be as visible at a broader scale.
+</div>
+
+<h3>Visualization 2:</h3>
+<p>
+<strong>Description:</strong> This boxplot compares the distribution of AQI values across four area types: coastal, rural, suburban, and urban, for March 2025. Each box summarizes the middle range of AQI values within that group, while the whiskers and outliers show how far pollution levels extend beyond the typical range. The chart suggests that AQI levels differ not only in their central values but also in how much they vary across area types. Urban and rural areas appear to have wider overall ranges and more high-end outliers, while coastal and suburban areas show somewhat lower and more compact distributions. The linked city-ranking chart below adds another layer by showing which cities within the selected area type have the highest AQI values, making it easier to connect overall group patterns to specific locations.
+
+<iframe 
+src="aqi_boxplot_interactive.html" 
+width="100%" 
+height="1000" 
+frameborder="0"
+scrolling="no">
+</iframe>
+
+<div class="takeaway">
+<strong>Takeaway:</strong> This visualization suggests that area type plays an important role in air quality patterns. Urban areas generally show the highest AQI values and several extreme outliers, indicating more frequent pollution spikes and greater inconsistency. Rural areas also show notable variation and some high outliers, suggesting that poorer air quality is not limited to cities alone. In contrast, coastal areas tend to have lower typical AQI values and fewer extreme observations, making them appear relatively cleaner and more stable. Overall, the chart shows that while every area type can experience unhealthy days, urban environments appear to be the most consistently impacted.
+</div>
+
+
+<h3>Visualization 3:</h3>
+<p>
+<strong>Description:</strong>
+This bar chart presents the median daily carbon monoxide (CO) concentration across different U.S. regions in 2025. Each bar represents a region, allowing for direct comparison of typical pollution levels while minimizing the influence of extreme outliers. By focusing on median values, the visualization highlights underlying regional differences in CO exposure rather than short-term spikes, making it easier to observe consistent geographic patterns.
+  
+</p>
+
+<iframe 
+src="median_co_by_region.html" 
+width="100%" 
+height="500" 
+frameborder="0">
+</iframe>
+
+<div class="takeaway">
+<strong>Takeaway:</strong> The chart shows clear regional variation in carbon monoxide levels, with the Southeast and South Central regions exhibiting the highest typical concentrations, while Alaska and Hawaii remain significantly lower. This pattern suggests that factors such as population density, industrial activity, and transportation infrastructure likely contribute to higher pollution levels in certain regions. Overall, air quality is not evenly distributed across the country, and regional characteristics play a key role in shaping baseline pollution exposure.
+</div>
+  
+<h3>Visualization 4:</h3>
+<p>
+<strong>Description:</strong> This scatter plot shows daily average carbon monoxide concentration levels over time across six major U.S. cities in 2025. Each point represents the average CO level recorded on a given day for a city, with color used to distinguish between cities. The visualization allows viewers to compare how CO concentrations change over the year and whether some cities experience consistently higher levels or more variation than others.
+</p>
+
+<iframe 
+src="latitude_aqi_scatter.html" 
+width="100%" 
+height="500" 
+frameborder="0">
+</iframe>
+
+<div class="takeaway">
+<strong>Takeaway:</strong> This visualization highlights differences in carbon monoxide patterns across cities over time. Some cities show more consistent levels while others have greater variability, indicating that local factors such as traffic, population density, or industrial activity may influence pollution levels. It also shows that fluctuations occur throughout the year rather than following a simple seasonal pattern.
+</div>
+
+<!-- Visualization 5 -->
+<h3>Visualization 5:</h3>
+<p>
+  <strong>Description:</strong> This visualization serves to show the concentrations of multiple parameters (pollutants) over
+    all valid monitor sites across the United States over time.  Disclaimer:  not all monitoring sites will record
+    the same parameters, and data for the last third of the year is sparse, if not absent due to the time needed to
+    update the data on the public databases.  Additionally, this visualization may take some time to load, given
+    the size of the dataset.
+</p>
+<div class="tabs">
+  <button onclick="show('co')" class="active">Carbon Monoxide</button>
+  <button onclick="show('no2')">Nitrogen Dioxide</button>
+  <button onclick="show('o3')">Ozone</button>
+  <button onclick="show('so2')">Sulfur Dioxide</button>
+</div>
+
+<div id="co" class="pane">
+  <iframe src="viz/Carbon monoxide.html" loading="lazy" width="100%" height="600px"></iframe>
+</div>
+<div id="no2" class="pane" hidden>
+  <iframe src="viz/Nitrogen dioxide (NO2).html" loading="lazy" width="100%" height="600px"></iframe>
+</div>
+<div id="o3" class="pane" hidden>
+  <iframe src="viz/Ozone.html" loading="lazy" width="100%" height="600px"></iframe>
+</div>
+<div id="so2" class="pane" hidden>
+  <iframe src="viz/Sulfur dioxide.html" loading="lazy" width="100%" height="600px"></iframe>
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.pane').forEach(p => p.hidden = true);
+  document.getElementById(id).hidden = false;
+
+  document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+}
+</script>
+
+<div class="takeaway">
+  <strong>Takeaway:</strong> This visualization allows users to observe changes in concentration of different pollutants across time in monitor sites
+    across the United States.  With industrial plants and mass burning of fossil fuels often taking place in major cities and industrial towns, there is 
+    a clear distinction that monitor sites in urban centers measure greater concentrations of pollutants such as NO2 and SO2.
+    While carbon monoxide readings are generally expected, and observed, to be higher in urban areas, in the dimension of time, 
+    it is noticeable that in the summer months, maybe most exemplary in the days around July 4th (day=185), carbon monoxide readings
+    are reported to be higher, even significantly higher than in urban centers. 
+</div>
+
+<h3>Interaction Features</h3>
+<p>
+  <ul>
+    <li><strong>On-hover tooltips</strong> display monitor site, date, measurement specifics, and pollutant type.</li>
+    <li>The <strong>parameter dropdown</strong> allows to filter the dataset to view measurements for one specific pollutant at a time.</li>
+    <li>The <strong>time slider</strong> allows the user to observe, through colors, trends across periods of time, and pick up
+      patterns temporally and geographically, with lower attention to any one particular point.</li>
+  </ul>
+</p>
     </section>
 
-    <section id="visualizations">
-      <h2>Data Visualizations</h2>
-
-      <div class="viz-block">
-        <h3>Visualization 1:</h3>
-        <p>
-          <strong>Description:</strong> This time-series plot shows how carbon monoxide (CO) levels and AQI vary throughout the year across four major cities. 
-          Each city is represented separately, allowing for comparison of pollution patterns across different locations. 
-          Across all cities, CO and AQI generally move together, rising and falling at similar points in time, which suggests a strong relationship between CO levels and overall air quality. 
-          Instead of following a smooth trend, both variables display frequent short-term fluctuations, with noticeable spikes appearing at different points in the year rather than being concentrated in a single season. 
-          The interactive zoom feature allows users to focus on specific time periods, making it easier to examine short-term changes, compare cities more closely, and identify localized pollution events. 
-          Vertical reference lines mark U.S. holidays, providing additional context for potential temporal patterns.
-        </p>
-
-        <iframe 
-          src="boston_co_chart.html" 
-          width="100%" 
-          height="700" 
-          frameborder="0"
-          scrolling="yes">
-        </iframe>
-
-        <div class="takeaway">
-          <strong>Takeaway:</strong> CO and AQI move closely together across cities, indicating that carbon monoxide is a key contributor to overall air quality. 
-          Pollution levels fluctuate frequently, showing that air quality can change quickly rather than following a stable pattern. 
-          Since spikes occur throughout the year and vary by city, air quality issues are not strictly seasonal and are influenced by local factors. 
-          The ability to zoom in highlights short-term pollution events that may not be as visible at a broader scale.
-        </div>
-      </div>
-
-      <div class="viz-block">
-        <h3>Visualization 2:</h3>
-        <p>
-          <strong>Description:</strong> This boxplot compares the distribution of AQI values across four area types: coastal, rural, suburban, and urban, for March 2025. Each box summarizes the middle range of AQI values within that group, while the whiskers and outliers show how far pollution levels extend beyond the typical range. The chart suggests that AQI levels differ not only in their central values but also in how much they vary across area types. Urban and rural areas appear to have wider overall ranges and more high-end outliers, while coastal and suburban areas show somewhat lower and more compact distributions. The linked city-ranking chart below adds another layer by showing which cities within the selected area type have the highest AQI values, making it easier to connect overall group patterns to specific locations.
-        </p>
-
-        <iframe 
-          src="aqi_boxplot_interactive.html" 
-          width="100%" 
-          height="1000" 
-          frameborder="0"
-          scrolling="no">
-        </iframe>
-
-        <div class="takeaway">
-          <strong>Takeaway:</strong> This visualization suggests that area type plays an important role in air quality patterns. Urban areas generally show the highest AQI values and several extreme outliers, indicating more frequent pollution spikes and greater inconsistency. Rural areas also show notable variation and some high outliers, suggesting that poorer air quality is not limited to cities alone. In contrast, coastal areas tend to have lower typical AQI values and fewer extreme observations, making them appear relatively cleaner and more stable. Overall, the chart shows that while every area type can experience unhealthy days, urban environments appear to be the most consistently impacted.
-        </div>
-      </div>
-
-      <div class="viz-block">
-        <h3>Visualization 3:</h3>
-        <p>
-          <strong>Description:</strong>
-          This bar chart presents the median daily carbon monoxide (CO) concentration across different U.S. regions in 2025. Each bar represents a region, allowing for direct comparison of typical pollution levels while minimizing the influence of extreme outliers. By focusing on median values, the visualization highlights underlying regional differences in CO exposure rather than short-term spikes, making it easier to observe consistent geographic patterns.
-        </p>
-
-        <iframe 
-          src="median_co_by_region.html" 
-          width="100%" 
-          height="500" 
-          frameborder="0">
-        </iframe>
-
-        <div class="takeaway">
-          <strong>Takeaway:</strong> The chart shows clear regional variation in carbon monoxide levels, with the Southeast and South Central regions exhibiting the highest typical concentrations, while Alaska and Hawaii remain significantly lower. This pattern suggests that factors such as population density, industrial activity, and transportation infrastructure likely contribute to higher pollution levels in certain regions. Overall, air quality is not evenly distributed across the country, and regional characteristics play a key role in shaping baseline pollution exposure.
-        </div>
-      </div>
-
-      <div class="viz-block">
-        <h3>Visualization 4:</h3>
-        <p>
-          <strong>Description:</strong> This scatter plot shows daily average carbon monoxide concentration levels over time across six major U.S. cities in 2025. Each point represents the average CO level recorded on a given day for a city, with color used to distinguish between cities. The visualization allows viewers to compare how CO concentrations change over the year and whether some cities experience consistently higher levels or more variation than others.
-        </p>
-
-        <iframe 
-          src="latitude_aqi_scatter.html" 
-          width="100%" 
-          height="500" 
-          frameborder="0">
-        </iframe>
-
-        <div class="takeaway">
-          <strong>Takeaway:</strong> This visualization highlights differences in carbon monoxide patterns across cities over time. Some cities show more consistent levels while others have greater variability, indicating that local factors such as traffic, population density, or industrial activity may influence pollution levels. It also shows that fluctuations occur throughout the year rather than following a simple seasonal pattern.
-        </div>
-      </div>
-
-      <div class="viz-block">
-        <h3>Visualization 5:</h3>
-        <p>
-          <strong>Description:</strong> This visualization serves to show the concentrations of multiple parameters (pollutants) over
-          all valid monitor sites across the United States over time. Disclaimer: not all monitoring sites will record
-          the same parameters, and data for the last third of the year is sparse, if not absent due to the time needed to
-          update the data on the public databases. Additionally, this visualization may take some time to load, given
-          the size of the dataset.
-        </p>
-
-        <div class="tabs">
-          <button onclick="show('co', event)" class="active">Carbon Monoxide</button>
-          <button onclick="show('no2', event)">Nitrogen Dioxide</button>
-          <button onclick="show('o3', event)">Ozone</button>
-          <button onclick="show('so2', event)">Sulfur Dioxide</button>
-        </div>
-
-        <div id="co" class="pane">
-          <iframe src="viz/Carbon monoxide.html" loading="lazy" width="100%" height="600"></iframe>
-        </div>
-        <div id="no2" class="pane" hidden>
-          <iframe src="viz/Nitrogen dioxide (NO2).html" loading="lazy" width="100%" height="600"></iframe>
-        </div>
-        <div id="o3" class="pane" hidden>
-          <iframe src="viz/Ozone.html" loading="lazy" width="100%" height="600"></iframe>
-        </div>
-        <div id="so2" class="pane" hidden>
-          <iframe src="viz/Sulfur dioxide.html" loading="lazy" width="100%" height="600"></iframe>
-        </div>
-
-        <div class="takeaway">
-          <strong>Takeaway:</strong> This visualization allows users to observe changes in concentration of different pollutants across time in monitor sites
-          across the United States. With industrial plants and mass burning of fossil fuels often taking place in major cities and industrial towns, there is 
-          a clear distinction that monitor sites in urban centers measure greater concentrations of pollutants such as NO2 and SO2.
-          While carbon monoxide readings are generally expected, and observed, to be higher in urban areas, in the dimension of time, 
-          it is noticeable that in the summer months, maybe most exemplary in the days around July 4th (day=185), carbon monoxide readings
-          are reported to be higher, even significantly higher than in urban centers. 
-        </div>
-
-        <h3>Interaction Features</h3>
-        <ul>
-          <li><strong>On-hover tooltips</strong> display monitor site, date, measurement specifics, and pollutant type.</li>
-          <li>The <strong>parameter dropdown</strong> allows to filter the dataset to view measurements for one specific pollutant at a time.</li>
-          <li>The <strong>time slider</strong> allows the user to observe, through colors, trends across periods of time, and pick up
-            patterns temporally and geographically, with lower attention to any one particular point.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="summary">
-      <h2>Summary and Future Work</h2>
-      <p>
-        This project explored air quality patterns across the United States using EPA pollutant data, focusing on how pollution varies over time, across regions, and between different types of areas. The visualizations show that carbon monoxide and AQI are closely related, reinforcing that CO plays a key role in overall air quality. While most values remain within moderate ranges, there are frequent short-term spikes, indicating that air quality can change quickly rather than following a smooth or predictable trend.
-      </p>
-      <p>
-        Comparisons across geographic areas reveal clear differences. Urban environments tend to have higher and more variable pollution levels, while coastal areas are generally cleaner and more stable. City-level analysis further highlights that pollution patterns are not uniform, with some cities experiencing more variability than others. These differences suggest that local conditions such as traffic, infrastructure, and population density have a strong influence on air quality.
-      </p>
-      <p>
-        Overall, the project shows that air pollution is both location-dependent and time-dependent, and that even areas with relatively good air quality can still experience occasional spikes that may impact public health.
-      </p>
-      <p>
-        For future work, this analysis could be expanded by incorporating public health data, such as hospital visits or respiratory illness rates, to better understand the real-world effects of pollution exposure. Including multiple years of data would also help identify long-term trends and determine whether air quality is improving or worsening over time. Additionally, refining geographic breakdowns or focusing more deeply on individual cities could provide more detailed insights. Finally, adding more interactive features would allow users to explore the data more dynamically and make the visualizations more useful for decision-making.
-      </p>
-    </section>
+  <!-- SUMMARY -->
+<section id="summary">
+<h2>Summary and Future Work</h2>
+<p>
+This project explored air quality patterns across the United States using EPA pollutant data, focusing on how pollution varies over time, across regions, and between different types of areas. The visualizations show that carbon monoxide and AQI are closely related, reinforcing that CO plays a key role in overall air quality. While most values remain within moderate ranges, there are frequent short-term spikes, indicating that air quality can change quickly rather than following a smooth or predictable trend.
+<p>
+  <p>
+Comparisons across geographic areas reveal clear differences. Urban environments tend to have higher and more variable pollution levels, while coastal areas are generally cleaner and more stable. City-level analysis further highlights that pollution patterns are not uniform, with some cities experiencing more variability than others. These differences suggest that local conditions such as traffic, infrastructure, and population density have a strong influence on air quality.
+<p>
+  <p>
+Overall, the project shows that air pollution is both location-dependent and time-dependent, and that even areas with relatively good air quality can still experience occasional spikes that may impact public health.
+<p>
+  <p>
+For future work, this analysis could be expanded by incorporating public health data, such as hospital visits or respiratory illness rates, to better understand the real-world effects of pollution exposure. Including multiple years of data would also help identify long-term trends and determine whether air quality is improving or worsening over time. Additionally, refining geographic breakdowns or focusing more deeply on individual cities could provide more detailed insights. Finally, adding more interactive features would allow users to explore the data more dynamically and make the visualizations more useful for decision-making.
+</p>
+</section>
   </main>
 
   <footer>
     <p>Created by Abhi Yarlagadda, Johnathan Mei, Anvita Poluri | DS4200 Final Project</p>
   </footer>
-
-  <script>
-    function show(id, event) {
-      document.querySelectorAll('.pane').forEach(p => p.hidden = true);
-      document.getElementById(id).hidden = false;
-
-      document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
-      event.currentTarget.classList.add('active');
-    }
-  </script>
 </body>
 </html>

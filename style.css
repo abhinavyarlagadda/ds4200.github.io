@@ -154,6 +154,11 @@ p + p {
   margin-top: 14px;
 }
 
+/* ── TABLE ELEMENTS ──────────────────────────────────────── */
+table, th, td {
+  border: 1px solid;
+}
+
 /* ── VIZ BLOCKS ──────────────────────────────────────────── */
 .viz-block {
   background-color: var(--card);

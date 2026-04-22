@@ -33,8 +33,102 @@
     <section id="data">
       <h2>Data Description</h2>
       <p>
-        The data used in this project comes from the U.S. Environmental Protection Agency and is available through downloadable CSV files as well as an API. The dataset can be filtered by pollutant, year, geographic area, and monitor site depending on the scope of the analysis. For a given pollutant and location, the number of observations can vary, but each area generally contains several hundred daily records across the year. Important attributes in the dataset include date, AQI, pollutant type, arithmetic mean concentration, daily maximum values, observation count, and location information such as city, county, state, latitude, and longitude. These variables make it possible to examine air quality over time, compare conditions across regions, and explore broader geographic patterns.
-      </p>
+        The data used in this project comes from the U.S. Environmental Protection Agency and is available through <a href="https://aqs.epa.gov/aqsweb/airdata/download_files.html">downloadable CSV files</a>, which we combined together to be able
+        to observe and explore different parameters from the same file.  The combined dataset consists of 598,171 rows and 29 columns.
+         The dataset can be filtered by pollutant, year, geographic area, and monitor site depending on the scope of the analysis. For a given pollutant and location, the number
+          of observations can vary, but each area generally contains several hundred daily records across the year. Important attributes in the dataset include date, AQI, pollutant type,
+           arithmetic mean concentration, daily maximum values, observation count, and location information such as city, county, state, latitude, and longitude. 
+           These variables make it possible to examine air quality over time, compare conditions across regions, and explore broader geographic patterns.
+           Refer to the table below for paraphrased details about all relevant features provided in the dataset.
+      </p><br>
+      <table>
+        <tr>
+          <th>Column</th>
+          <th>Description</th>
+          <th>Data Type</th>
+        </tr>
+        <tr>
+          <td>State Code</td>
+          <td>FIPS code of the monitor site's state</td>
+          <td>int64</td>
+        </tr>
+        <tr>
+          <td>County Code</td>
+          <td>FIPS code of the monitor site's county</td>
+          <td>int64</td>
+        </tr>
+        <tr>
+          <td>Site Number</td>
+          <td>Unique identifier for the monitor within the county</td>
+          <td>int64</td>
+        </tr>
+        <tr>
+          <td>Parameter Code</td>
+          <td>Air Quality System code for the measured parameter</td>
+          <td>int64</td>
+        </tr>
+        <tr>
+          <td>State Code</td>
+          <td>FIPS state code</td>
+          <td>int64</td>
+        </tr>
+        <tr>
+          <td>Latitude</td>
+          <td>Angular distance north of the equator (decimal degrees)</td>
+          <td>float64</td>
+        </tr>
+        <tr>
+          <td>Longitude</td>
+          <td>Angular distance east of the prime meridian (decimal degrees)</td>
+          <td>float64</td>
+        </tr>
+        <tr>
+          <td>Parameter Name</td>
+          <td>Name/descriptor of the measured parameter</td>
+          <td>object (string)</td>
+        </tr>
+        <tr>
+          <td>Date Local</td>
+          <td>Calendar date for daily summary for each monitor</td>
+          <td>object (string)</td>
+        </tr>
+        <tr>
+          <td>Arithmetic Mean</td>
+          <td>Average value of measurements for the day</td>
+          <td>float64</td>
+        </tr>
+        <tr>
+          <td>AQI</td>
+          <td>Air Quality Index for the day for the pollutant</td>
+          <td>int64</td>
+        </tr>
+        <tr>
+          <td>Local Site Name</td>
+          <td>Name of site given by operating party (if any)</td>
+          <td>object (string)</td>
+        </tr>
+        <tr>
+          <td>State Name</td>
+          <td>Name of monitor's state</td>
+          <td>object (string)</td>
+        </tr>
+        <tr>
+          <td>County Name</td>
+          <td>Name of monitor's county</td>
+          <td>object (string)</td>
+        </tr>
+        <tr>
+          <td>City Name</td>
+          <td>Name of monitor's City</td>
+          <td>object (string)</td>
+        </tr>
+        <tr>
+          <td>CBSA Name</td>
+          <td>Name of core bases statistical area (metropolitan area) in which the monitor is located</td>
+          <td>object (string)</td>
+        </tr>
+
+      </table>
     </section>
 
     <!-- REFERENCES -->

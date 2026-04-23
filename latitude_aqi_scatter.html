@@ -192,17 +192,21 @@ d3.csv("co.csv").then(function(data) {
     .attr("text-anchor", "middle")
     .text("Daily Avg CO (ppm)");
 
-  chart.selectAll("circle.point")
+
+  const pointsGroup = chart.append("g");
+
+  pointsGroup.selectAll("circle.point")
     .data(finalData)
     .enter()
     .append("circle")
-    .attr("class", "point")
+    .attr("class", d => `point city-${d.City.replace(/[^a-zA-Z]/g, "")}`)
     .attr("cx", d => x(d.date))
     .attr("cy", d => y(d.co))
     .attr("r", 4.5)
     .attr("fill", d => color(d.City))
     .attr("opacity", 0.75)
     .on("mouseover", function(event, d) {
+      if (!activeSet.has(d.City)) return;
       tooltip
         .style("opacity", 1)
         .html(
@@ -227,7 +231,27 @@ d3.csv("co.csv").then(function(data) {
 
   cityOrder.forEach(function(city, i) {
     const row = legend.append("g")
-      .attr("transform", `translate(0, ${i * 24})`);
+      .attr("transform", `translate(0, ${i * 24})`)
+      .on("click", function() {
+        const isActive = activeSet.has(city);
+        if (isActive) {
+          activeSet.delete(city);
+        } else {
+          activeSet.add(city);
+        }
+        const nowActive = activeSet.has(city);
+
+        d3.select(this).select("circle")
+          .attr("opacity", nowActive ? 1 : 0.2);
+        d3.select(this).select("text")
+          .attr("opacity", nowActive ? 1 : 0.35);
+
+        const cls = `.city-${city.replace(/[^a-zA-Z]/g, "")}`;
+        pointsGroup.selectAll(cls)
+          .transition().duration(200)
+          .attr("opacity", nowActive ? 0.75 : 0)
+          .attr("pointer-events", nowActive ? "all" : "none");
+      });
 
     row.append("circle")
       .attr("cx", 0)

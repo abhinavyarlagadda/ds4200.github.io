@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@6.1.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300, "stroke": null}, "axis": {"grid": true, "gridColor": "#eeeeee"}}, "layer": [{"mark": {"type": "bar", "color": "#4A7FA5", "cornerRadiusEnd": 4}, "encoding": {"tooltip": [{"field": "Region", "title": "Region", "type": "nominal"}, {"field": "Median Value", "format": ".4f", "title": "Median Value", "type": "quantitative"}, {"field": "Unit", "title": "Unit", "type": "nominal"}, {"field": "n_stations", "title": "Monitoring stations", "type": "quantitative"}], "x": {"field": "Median Value", "scale": {"zero": true}, "title": "Median Concentration", "type": "quantitative"}, "y": {"axis": {"labelFontSize": 12}, "field": "region_label", "sort": {"field": "Median Value", "order": "descending"}, "title": null, "type": "nominal"}}, "transform": [{"filter": "datum.Pollutant == selected_pollutant"}]}, {"mark": {"type": "text", "align": "left", "color": "#444", "dx": 5, "fontSize": 11}, "encoding": {"text": {"field": "Median Value", "format": ".3f", "type": "quantitative"}, "x": {"field": "Median Value", "type": "quantitative"}, "y": {"field": "region_label", "sort": {"field": "Median Value", "order": "descending"}, "type": "nominal"}}, "transform": [{"filter": "datum.Pollutant == selected_pollutant"}]}], "data": {"name": "data-e7852b8e030f90f8098e48745f887825"}, "height": 380, "params": [{"name": "selected_pollutant", "bind": {"input": "select", "options": ["CO (ppm)", "NO\u2082 (ppb)"], "name": "Pollutant: "}, "value": "CO (ppm)"}], "title": {"text": "Median Daily Pollutant Concentration by U.S. Region (2025)", "anchor": "start", "fontSize": 16, "subtitle": ["Each bar shows the median across all daily readings in that region.", "n = number of unique monitoring stations contributing to the estimate."], "subtitleColor": "#666", "subtitleFontSize": 12}, "width": "container", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-e7852b8e030f90f8098e48745f887825": [{"Region": "Southeast", "Median Value": 0.254167, "n_stations": 24, "Pollutant": "CO (ppm)", "Unit": "ppm", "region_label": "Southeast  (n=24)"}, {"Region": "South Central", "Median Value": 0.2452935, "n_stations": 17, "Pollutant": "CO (ppm)", "Unit": "ppm", "region_label": "South Central  (n=17)"}, {"Region": "California", "Median Value": 0.225, "n_stations": 27, "Pollutant": "CO (ppm)", "Unit": "ppm", "region_label": "California  (n=27)"}, {"Region": "Midwest", "Median Value": 0.222136, "n_stations": 32, "Pollutant": "CO (ppm)", "Unit": "ppm", "region_label": "Midwest  (n=32)"}, {"Region": "Mid-Atlantic", "Median Value": 0.2, "n_stations": 14, "Pollutant": "CO (ppm)", "Unit": "ppm", "region_label": "Mid-Atlantic  (n=14)"}, {"Region": "Northeast", "Median Value": 0.2, "n_stations": 33, "Pollutant": "CO (ppm)", "Unit": "ppm", "region_label": "Northeast  (n=33)"}, {"Region": "Territories", "Median Value": 0.2, "n_stations": 2, "Pollutant": "CO (ppm)", "Unit": "ppm", "region_label": "Territories  (n=2)"}, {"Region": "Mountain West", "Median Value": 0.191304, "n_stations": 35, "Pollutant": "CO (ppm)", "Unit": "ppm", "region_label": "Mountain West  (n=35)"}, {"Region": "Pacific Northwest", "Median Value": 0.170417, "n_stations": 4, "Pollutant": "CO (ppm)", "Unit": "ppm", "region_label": "Pacific Northwest  (n=4)"}, {"Region": "Alaska / Hawaii", "Median Value": 0.129167, "n_stations": 4, "Pollutant": "CO (ppm)", "Unit": "ppm", "region_label": "Alaska / Hawaii  (n=4)"}, {"Region": "Pacific Northwest", "Median Value": 10.108877, "n_stations": 5, "Pollutant": "NO\u2082 (ppb)", "Unit": "ppb", "region_label": "Pacific Northwest  (n=5)"}, {"Region": "California", "Median Value": 6.378261, "n_stations": 52, "Pollutant": "NO\u2082 (ppb)", "Unit": "ppb", "region_label": "California  (n=52)"}, {"Region": "Southeast", "Median Value": 6.168182, "n_stations": 33, "Pollutant": "NO\u2082 (ppb)", "Unit": "ppb", "region_label": "Southeast  (n=33)"}, {"Region": "Northeast", "Median Value": 5.933333, "n_stations": 44, "Pollutant": "NO\u2082 (ppb)", "Unit": "ppb", "region_label": "Northeast  (n=44)"}, {"Region": "Mid-Atlantic", "Median Value": 5.726087, "n_stations": 20, "Pollutant": "NO\u2082 (ppb)", "Unit": "ppb", "region_label": "Mid-Atlantic  (n=20)"}, {"Region": "Midwest", "Median Value": 5.617391, "n_stations": 45, "Pollutant": "NO\u2082 (ppb)", "Unit": "ppb", "region_label": "Midwest  (n=45)"}, {"Region": "South Central", "Median Value": 4.254356, "n_stations": 56, "Pollutant": "NO\u2082 (ppb)", "Unit": "ppb", "region_label": "South Central  (n=56)"}, {"Region": "Mountain West", "Median Value": 4.125, "n_stations": 71, "Pollutant": "NO\u2082 (ppb)", "Unit": "ppb", "region_label": "Mountain West  (n=71)"}, {"Region": "Alaska / Hawaii", "Median Value": 2.0354165, "n_stations": 1, "Pollutant": "NO\u2082 (ppb)", "Unit": "ppb", "region_label": "Alaska / Hawaii  (n=1)"}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

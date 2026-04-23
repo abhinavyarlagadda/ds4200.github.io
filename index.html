@@ -211,20 +211,25 @@
     <!-- VIZ 3 -->
     <div class="viz-block">
       <span class="viz-label">Visualization 3 (Altair)</span>
-      <h3>Median CO Concentration by U.S. Region</h3>
+      <h3>Median Pollutant Concentration by U.S. Region</h3>
       <p>
         <strong>Description:</strong>
-        This bar chart presents the median daily carbon monoxide (CO) concentration across different U.S. regions in 2025. Each bar represents a region, allowing for direct comparison of typical pollution levels while minimizing the influence of extreme outliers. By focusing on median values, the visualization highlights underlying regional differences in CO exposure rather than short-term spikes, making it easier to observe consistent geographic patterns.
+        This bar chart presents the median daily pollutant concentration across different U.S. regions in 2025. Each bar represents a region, sorted from highest to lowest concentration, allowing for direct comparison of typical pollution levels while minimizing the influence of extreme outliers. The number of unique monitoring stations backing each estimate is shown in the region label (n=), providing transparency about how well-represented each region is in the data. Use the dropdown to switch between carbon monoxide (CO, in ppm) and nitrogen dioxide (NO&#x2082;, in ppb) and observe how regional patterns shift across pollutants.
       </p>
 
-      <iframe src="median_co_by_region.html" width="100%" height="500" frameborder="0"></iframe>
+      <iframe src="median_pollutant_by_region.html" width="100%" height="500" frameborder="0"></iframe>
 
       <div class="takeaway">
         <strong>Key Takeaway</strong>
-        The chart shows clear regional variation in carbon monoxide levels, with the Southeast and South Central regions exhibiting the highest typical concentrations, while Alaska and Hawaii remain significantly lower. This pattern suggests that factors such as population density, industrial activity, and transportation infrastructure likely contribute to higher pollution levels in certain regions. Overall, air quality is not evenly distributed across the country, and regional characteristics play a key role in shaping baseline pollution exposure.
+        Regional pollution patterns differ meaningfully depending on the pollutant. For carbon monoxide, the Southeast leads with the highest median concentrations, likely reflecting the region's population density, vehicle traffic, and industrial activity. For nitrogen dioxide, the Pacific Northwest shows the highest typical levels, pointing to different underlying emission sources across pollutants. In both cases, Alaska and Hawaii tend to sit at the lower end of the range. Overall, the chart reinforces that air quality is not evenly distributed across the country, and that the geographic story changes depending on which pollutant is being examined.
       </div>
 
-      
+      <h3 class="interaction-heading">Interaction Features</h3>
+      <ul>
+        <li><strong>Pollutant dropdown</strong> — use the selector above the chart to switch between CO (ppm) and NO&#x2082; (ppb); the bars and sort order update automatically to reflect the selected pollutant.</li>
+        <li><strong>Station count labels</strong> — each region label includes an n= value indicating how many unique monitoring stations contributed data, giving context for how reliable each bar's estimate is.</li>
+        <li><strong>On-hover tooltips</strong> — hover over any bar to see the region name, median concentration value, unit, and number of monitoring stations.</li>
+      </ul>
     </div>
 
     <!-- VIZ 4 -->

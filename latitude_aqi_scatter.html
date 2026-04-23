@@ -60,7 +60,7 @@ const height = svgHeight - margin.top - margin.bottom;
 
 const cityOrder = ["Boston", "New York", "Washington, DC", "Los Angeles", "Houston", "Atlanta"];
 const cities = ["Boston", "New York", "Washington", "Los Angeles", "Houston", "Atlanta"];
-
+const activeSet = new Set(cityOrder);
 const parseDate = d3.timeParse("%Y-%m-%d");
 const formatDate = d3.timeFormat("%b %d, %Y");
 
